@@ -1,0 +1,279 @@
+/* ============================================================
+   BASE.CSS | Reset, Typography, Utilities
+   ============================================================ */
+
+/* Google Fonts loaded via <link rel="preload"> in HTML for better performance */
+
+/* === RESET === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  font-size: var(--font-size-base);
+  background-color: #000; /* Prevents white flash before header loads */
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: var(--line-height-base);
+  color: var(--brand-gray);
+  background-color: var(--brand-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-speed) var(--transition-ease);
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input,
+textarea {
+  font-family: inherit;
+  border: none;
+  outline: none;
+}
+
+figure {
+  margin: 0;
+}
+
+/* === TYPOGRAPHY === */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  line-height: var(--line-height-heading);
+  color: var(--brand-dark);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--brand-gray);
+  font-size: 1rem;
+  line-height: var(--line-height-base);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* === LAYOUT UTILITIES === */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.container--wide {
+  max-width: 1500px;
+}
+
+.section {
+  padding: var(--section-padding) 0;
+  position: relative;
+}
+
+.section--no-top {
+  padding-top: 0;
+}
+
+.section--no-bottom {
+  padding-bottom: 0;
+}
+
+.section--bg-light {
+  background-color: var(--brand-light-bg);
+}
+
+.section--bg-dark {
+  background-color: var(--brand-dark);
+}
+
+/* === FLEX & GRID UTILITIES === */
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* === TEXT UTILITIES === */
+.text-center {
+  text-align: center;
+}
+
+.text-white {
+  color: var(--brand-white);
+}
+
+.text-white p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+/* === SECTION HEADING PATTERN === */
+.section-subtitle {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--brand-dark);
+  margin-bottom: 8px;
+  /* Slightly reduced */
+}
+
+.section-title {
+  font-size: 2rem;
+  /* Exact 32px */
+  font-weight: 800;
+  color: var(--brand-dark);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.section-title--white {
+  color: var(--brand-white);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+  .section {
+    padding: var(--section-padding-md) 0;
+  }
+
+  .grid-2 {
+    gap: 30px;
+  }
+
+  .grid-3 {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--section-padding-sm) 0;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .section-subtitle {
+    font-size: 0.82rem;
+    letter-spacing: 2.5px;
+  }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Safe area insets voor notch devices */
+@supports (padding: env(safe-area-inset-top)) {
+  .header__inner {
+    padding-left: max(15px, env(safe-area-inset-left));
+    padding-right: max(15px, env(safe-area-inset-right));
+  }
+
+  .footer__bottom {
+    padding-bottom: max(25px, env(safe-area-inset-bottom));
+  }
+}

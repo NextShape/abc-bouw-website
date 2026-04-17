@@ -1,0 +1,698 @@
+/* ============================================================
+   LAYOUT.CSS | Header, Footer, Navigation, Page Banner
+   ============================================================ */
+
+/* === HEADER === */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: var(--header-bg);
+  transition: background var(--transition-speed) var(--transition-ease),
+    box-shadow var(--transition-speed) var(--transition-ease);
+}
+
+.header.scrolled {
+  background: var(--header-bg-solid);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+/* Logo */
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.header__logo-icon {
+  width: 140px;
+  height: 80px;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+}
+
+.header__logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.header__logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--brand-white);
+}
+
+/* Navigation */
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.header__nav a {
+  color: var(--brand-white);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  position: relative;
+  padding: 5px 0;
+  transition: color var(--transition-speed);
+}
+
+.header__nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--brand-primary);
+  transition: width var(--transition-speed) var(--transition-ease);
+}
+
+.header__nav a:hover::after,
+.header__nav a.active::after {
+  width: 100%;
+}
+
+.header__nav a:hover,
+.header__nav a.active {
+  color: var(--brand-primary);
+}
+
+/* Header CTA */
+.header__cta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header__phone {
+  display: inline-flex;
+  align-items: stretch;
+  background: var(--brand-primary);
+  position: relative;
+  height: 44px;
+  /* Reduced for a more compact, punchy look */
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.header__phone:hover {
+  transform: translateY(-2px);
+}
+
+.header__phone-num {
+  padding: 0 25px;
+  display: flex;
+  align-items: center;
+  color: var(--brand-white);
+  font-weight: 800;
+  font-size: 0.9rem;
+  z-index: 1;
+}
+
+.header__phone-icon {
+  background: #000;
+  color: var(--brand-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  margin-left: -12px;
+  /* Smooth overlap with the number block */
+  /* Sharp slanted black container \ */
+  clip-path: polygon(12px 0, 100% 0, 100% 100%, 0 100%);
+  z-index: 2;
+  padding-left: 10px;
+  /* Optical centering inside slanted box */
+}
+
+.header__phone-icon i {
+  font-size: 1rem;
+}
+
+/* Hamburger */
+.header__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px;
+  background: none;
+  border: none;
+}
+
+.header__hamburger span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background: var(--brand-white);
+  transition: all var(--transition-speed) var(--transition-ease);
+}
+
+.header__hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.header__hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.header__hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  background: var(--brand-dark);
+  z-index: 999;
+  padding: 40px 30px;
+  overflow-y: auto;
+  transform: translateX(100%);
+  pointer-events: none;
+  transition: transform 0.35s var(--transition-ease);
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.mobile-menu a {
+  display: block;
+  color: var(--brand-white);
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: color var(--transition-speed);
+}
+
+.mobile-menu a:hover,
+.mobile-menu a.active {
+  color: var(--brand-primary);
+}
+
+/* === PAGE BANNER (inner pages) === */
+.page-banner {
+  position: relative;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: calc(var(--header-height) / 2);
+  overflow: hidden;
+}
+
+.page-banner__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.page-banner__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.page-banner__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0.3) 100%);
+}
+
+/* Header Diagonal Accents removed to prioritize clean subpage look */
+
+.page-banner__title {
+  position: relative;
+  z-index: 5;
+  color: var(--brand-white);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.page-banner__breadcrumb {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.page-banner__breadcrumb a {
+  color: var(--brand-primary);
+}
+
+.page-banner__breadcrumb span {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* === PRE-FOOTER CTA BAR === */
+.prefooter {
+  background: var(--brand-prefooter-bg);
+  padding: 25px 0;
+}
+
+.prefooter__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.prefooter__left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.prefooter__logo {
+  display: flex;
+  align-items: center;
+}
+
+.prefooter__logo-icon {
+  width: 180px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.prefooter__logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.prefooter__contact {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.prefooter__text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.15rem;
+}
+
+.prefooter__text a {
+  color: var(--brand-white);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.prefooter__text a:hover {
+  color: var(--brand-primary);
+}
+
+/* === FOOTER === */
+.footer {
+  background: var(--brand-footer-bg);
+  padding: 80px 0 0;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 50px;
+}
+
+.footer__grid > div:nth-child(2) {
+  padding-left: 30px;
+}
+
+.footer__heading {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: 25px;
+  letter-spacing: 0.01em;
+}
+
+.footer__text {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.footer__contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer__contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footer__contact-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+}
+
+.footer__contact-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--brand-primary);
+  fill: none;
+  stroke-width: 2;
+}
+
+/* Footer Bottom */
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 0;
+  margin-top: 60px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer__copyright {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.footer__copyright a {
+  color: var(--brand-primary);
+}
+
+.footer__built {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  line-height: 1.2;
+}
+
+.footer__built a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-speed);
+}
+
+.footer__built a:hover {
+  color: var(--brand-primary);
+}
+
+.footer__socials {
+  display: flex;
+  gap: 25px;
+}
+
+.footer__socials a {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color var(--transition-speed);
+}
+
+.footer__socials a:hover {
+  color: var(--brand-primary);
+}
+
+/* Newsletter form in footer */
+.footer .newsletter-form {
+  display: flex;
+  gap: 0;
+}
+
+.footer .newsletter-form .form-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--brand-white);
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  transition: border-color var(--transition-speed);
+}
+
+.footer .newsletter-form .form-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.footer .newsletter-form .form-input:focus {
+  border-color: var(--brand-primary);
+}
+
+.footer .newsletter-form .btn-submit {
+  width: 48px;
+  background: var(--brand-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  flex-shrink: 0;
+  transition: background var(--transition-speed);
+}
+
+.footer .newsletter-form .btn-submit:hover {
+  background: var(--brand-primary-hover);
+}
+
+.footer .newsletter-form .btn-submit svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--brand-white);
+  fill: none;
+  stroke-width: 2;
+}
+
+/* === SCROLL TO TOP === */
+.scroll-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  background: var(--brand-primary);
+  color: var(--brand-white);
+  border: none;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 900;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) rotate(45deg);
+  transition: all var(--transition-speed) var(--transition-ease);
+  box-shadow: var(--shadow-md);
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) rotate(45deg);
+}
+
+.scroll-top:hover {
+  background: var(--brand-primary-hover);
+  transform: translateY(-3px) rotate(45deg);
+}
+
+.scroll-top svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--brand-white);
+  fill: none;
+  stroke-width: 2.5;
+  transform: rotate(-45deg);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+  .header__nav {
+    gap: 25px;
+  }
+
+  .header__nav a {
+    font-size: 0.85rem;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .footer__grid > div:nth-child(2) {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .header__nav {
+    display: none;
+  }
+
+  .header__hamburger {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  /* Logo: groot genoeg om herkenbaar te zijn */
+  .header__logo-icon {
+    width: 100px;
+    height: 60px;
+  }
+
+  /* Bel-button verbergen - zit in mobile menu */
+  .header__phone {
+    display: none;
+  }
+
+  .header__inner {
+    padding: 0 15px;
+  }
+
+  .header__logo-text {
+    font-size: 1.25rem;
+  }
+
+  /* Fix #10: Mobile menu mist telefoon/CTA */
+  .mobile-menu__cta {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mobile-menu__phone {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 0;
+  }
+
+  .mobile-menu__phone i {
+    color: var(--brand-primary);
+    font-size: 1.1rem;
+  }
+
+  .mobile-menu__btn.btn-primary {
+    margin-top: 5px;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    padding: 14px 28px;
+    font-weight: 800;
+    font-size: 0.92rem;
+    text-align: center;
+  }
+
+  .mobile-menu__btn .btn-text {
+    padding: 0;
+  }
+
+  .mobile-menu__btn .btn-arrow {
+    display: none;
+  }
+
+  .prefooter__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* Fix #11: Prefooter button niet full-width */
+  .prefooter__inner .btn-primary {
+    width: auto;
+    align-self: center;
+  }
+
+  .prefooter__left {
+    flex-direction: column;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer__grid > div:nth-child(2) {
+    padding-left: 0;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .page-banner {
+    height: 280px;
+  }
+
+  .page-banner::after,
+  .page-banner::before {
+    display: none;
+  }
+
+  /* Fix #16: Scroll-top button positie */
+  .scroll-top {
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Fix #20: Video modal close button */
+  .video-modal__close {
+    top: -45px;
+    right: 0;
+  }
+}
