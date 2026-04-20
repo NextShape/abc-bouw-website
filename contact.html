@@ -154,11 +154,12 @@
     ]
   }
   </script>
-  <!-- NextShape CMS -->
-  <script src="https://cms.nextshape.nl/loader.js" data-api-key="cms_hb8bquisem9jhy2eatmh"></script>
+  <!-- NextShape CMS — preconnect voor snelle eerste verbinding -->
+  <link rel="preconnect" href="https://cms.nextshape.nl" crossorigin>
+  <link rel="dns-prefetch" href="https://cms.nextshape.nl">
 </head>
 
-<body>
+<body data-cms-optimize-all>
 
   <!-- HEADER -->
   <header class="header" id="header" data-cms-group="header">
@@ -179,7 +180,7 @@
         <a href="/contact" class="active">Contact</a>
       </nav>
       <div class="header__cta">
-        <a href="tel:+31682582806" class="header__phone" data-cms-link="telefoon_link">
+        <a href="tel:+31682582806" class="header__phone" data-cms-link="telefoon_link" data-cms-event="telefoon-klik" data-cms-event-locatie="header">
           <span class="header__phone-num" data-cms-dict="telefoonnummer">+31 6 825 828 06</span>
           <span class="header__phone-icon">
             <i class="fi fi-rr-mobile-button"></i>
@@ -197,11 +198,11 @@
       <a href="/projecten">Projecten</a>
       <a href="/contact" class="active">Contact</a>
       <div class="mobile-menu__cta">
-        <a href="tel:+31682582806" class="mobile-menu__phone" data-cms-link="telefoon_link">
+        <a href="tel:+31682582806" class="mobile-menu__phone" data-cms-link="telefoon_link" data-cms-event="telefoon-klik" data-cms-event-locatie="mobile-menu">
           <i class="fi fi-rr-mobile-button"></i>
           <span data-cms-dict="telefoonnummer">+31 6 825 828 06</span>
         </a>
-        <a href="/contact" class="btn-primary mobile-menu__btn" data-cms-color="header_knop_kleur" data-cms-color-target="bg">
+        <a href="/contact" class="btn-primary mobile-menu__btn" data-cms-color="header_knop_kleur" data-cms-color-target="bg" data-cms-event="contact-knop-klik" data-cms-event-locatie="mobile-menu">
           <span class="btn-text" data-cms="header_knop">Neem contact op</span>
           <span class="btn-arrow">&raquo;</span>
         </a>
@@ -237,17 +238,16 @@
 
         <!-- Contact Form -->
         <div data-animate="fade-left">
-          <div class="contact-success" id="contactSuccess" style="display:none;background:var(--brand-primary);color:#fff;padding:20px 25px;margin-bottom:30px;font-size:1rem;line-height:1.5;">
+          <div class="contact-success" id="contactSuccess" data-cms-form-success style="display:none;background:var(--brand-primary);color:#fff;padding:20px 25px;margin-bottom:30px;font-size:1rem;line-height:1.5;">
             <strong>Bedankt voor uw aanvraag!</strong><br>We hebben uw bericht ontvangen en nemen zo snel mogelijk contact met u op.
+          </div>
+          <div class="contact-error" data-cms-form-error style="display:none;background:#b91c1c;color:#fff;padding:20px 25px;margin-bottom:30px;font-size:1rem;line-height:1.5;">
+            <strong>Er ging iets mis.</strong><br>Probeer het opnieuw of bel ons direct op <span data-cms-dict="telefoonnummer">+31 6 825 828 06</span>.
           </div>
           <span class="section-subtitle" data-cms="contact_subtitel">Neem Contact Op</span>
           <h2 class="section-title" style="margin-bottom: 30px;" data-cms="contact_titel">Bespreek uw project met ons</h2>
 
-          <form class="contact-form" action="https://formsubmit.co/Info@abc-bouwbv.nl" method="POST">
-            <input type="hidden" name="_subject" value="Nieuwe aanvraag via abc-bouwbv.nl">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="box">
-            <input type="hidden" name="_next" value="https://abc-bouwbv.nl/contact?success=true">
+          <form class="contact-form" data-cms-form="contact" data-cms-event="contact-form-submit">
             <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
               <input type="text" class="form-input" name="naam" placeholder="Uw naam *" required>
               <input type="email" class="form-input" name="email" placeholder="Uw e-mail *" required>
@@ -258,6 +258,8 @@
             </div>
             <input type="text" class="form-input" name="plaatsnaam" placeholder="Plaatsnaam *" required>
             <textarea class="form-input" name="bericht" placeholder="Vertel kort wat u wilt laten uitvoeren *" required></textarea>
+            <!-- Honeypot: verborgen veld dat spam-bots invullen; echte gebruikers niet -->
+            <input type="text" name="form_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px" aria-hidden="true">
             <div style="display:flex;align-items:flex-start;gap:10px;">
               <input type="checkbox" id="privacy" name="privacy" required style="margin-top:4px;min-width:18px;min-height:18px;">
               <label for="privacy" style="font-size:0.85rem;color:var(--brand-gray);line-height:1.5;">Ik ga akkoord met de verwerking van mijn gegevens voor het beantwoorden van mijn aanvraag. Uw gegevens worden niet gedeeld met derden.</label>
@@ -336,7 +338,7 @@
             <span class="prefooter__text" data-cms="prefooter_tekst">Bel ons gratis op <a href="tel:+31682582806" data-cms-link="telefoon_link">+31 6 825 828 06</a>.</span>
           </div>
         </div>
-        <a href="/contact" class="btn-primary" data-cms-color="prefooter_knop_kleur" data-cms-color-target="bg">
+        <a href="/contact" class="btn-primary" data-cms-color="prefooter_knop_kleur" data-cms-color-target="bg" data-cms-event="contact-knop-klik" data-cms-event-locatie="prefooter">
           <span class="btn-text" data-cms="prefooter_knop">Neem contact op</span>
           <span class="btn-arrow">&raquo;</span>
         </a>
@@ -467,6 +469,9 @@
 
   <script src="js/app.js"></script>
   <script src="js/animations.js"></script>
+
+  <!-- NextShape CMS loader — deferred, draait na HTML-parsing -->
+  <script src="https://cms.nextshape.nl/loader.js" data-api-key="cms_hb8bquisem9jhy2eatmh" defer></script>
 </body>
 
 </html>
