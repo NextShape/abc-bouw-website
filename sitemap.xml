@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://abc-bouwbv.nl/</loc>
-    <lastmod>2026-04-16</lastmod>
+    <loc>https://www.abc-bouwbv.nl/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://abc-bouwbv.nl/over-ons</loc>
-    <lastmod>2026-04-16</lastmod>
+    <loc>https://www.abc-bouwbv.nl/over-ons</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abc-bouwbv.nl/diensten</loc>
-    <lastmod>2026-04-16</lastmod>
+    <loc>https://www.abc-bouwbv.nl/projecten</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abc-bouwbv.nl/projecten</loc>
-    <lastmod>2026-04-16</lastmod>
+    <loc>https://www.abc-bouwbv.nl/diensten</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abc-bouwbv.nl/contact</loc>
-    <lastmod>2026-04-16</lastmod>
+    <loc>https://www.abc-bouwbv.nl/privacyverklaring</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.abc-bouwbv.nl/contact</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
