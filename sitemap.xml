@@ -11,7 +11,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.abc-bouwbv.nl/contact</loc>
+    <loc>https://www.abc-bouwbv.nl/projecten</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -21,12 +21,12 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.abc-bouwbv.nl/privacyverklaring</loc>
+    <loc>https://www.abc-bouwbv.nl/contact</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.abc-bouwbv.nl/projecten</loc>
+    <loc>https://www.abc-bouwbv.nl/privacyverklaring</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
