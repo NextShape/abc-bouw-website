@@ -231,11 +231,12 @@
           <span class="section-subtitle" data-cms="contact_subtitel">Neem Contact Op</span>
           <h2 class="section-title" style="margin-bottom: 30px;" data-cms="contact_titel">Bespreek uw project met ons</h2>
 
-          <form class="contact-form" action="https://formsubmit.co/Info@abc-bouwbv.nl" method="POST">
-            <input type="hidden" name="_subject" value="Nieuwe aanvraag via abc-bouwbv.nl">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="box">
-            <input type="hidden" name="_next" value="https://abc-bouwbv.nl/contact?success=true">
+          <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" data-cms-form="contact" data-cms-event="contact-form-submit">
+            <input type="hidden" name="access_key" value="31da457c-9d67-4c85-ae03-f13e7c5990e2">
+            <input type="hidden" name="subject" value="Nieuwe aanvraag via website ABC Bouw BV">
+            <input type="hidden" name="from_name" value="ABC Bouw BV Contactformulier">
+            <input type="hidden" name="redirect" value="https://abc-bouwbv.nl/contact?verzonden=1">
+            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
             <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
               <input type="text" class="form-input" name="naam" placeholder="Uw naam *" required="">
               <input type="email" class="form-input" name="email" placeholder="Uw e-mail *" required="">
@@ -455,6 +456,22 @@
   <script src="js/app.js"></script>
   <script src="js/animations.js"></script>
 
+  <!-- Web3Forms: toon succes-banner na native POST-redirect (?verzonden=1) -->
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('verzonden') === '1') {
+        var banner = document.getElementById('contactSuccess');
+        if (banner) {
+          banner.style.display = 'block';
+          banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+      }
+    })();
+  </script>
 
 
 </body></html>
